@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import NewPerson from './components/NewPerson'
 import People from "./components/People"
 import Filter from "./components/Filter"
-import axios from "axios"
+import PeopleService from "./services/PeopleService"
 
 const App = () => {
   const [people, setPeople] = useState([]) 
@@ -13,19 +13,34 @@ const App = () => {
   const addNewPerson = (event) => {
     event.preventDefault()
 
+    let person
+
     if (people.map(person => person.name).includes(newName)) {
-      alert(`${newName} is already added to phonebook`)
+      if (!window.confirm(`${newName} is already added. Do you want to replace its number?`)) {
+        return
+      }
+      
+      person = people.find(p => p.name === newName)
+
+      PeopleService
+        .updateNumber(person, newNumber)
+        .then(newPerson => {
+          setPeople(people.map(p => p.id === newPerson.id ? newPerson : p))
+          setNewName("")
+          setNewNumber("")
+        })
+      
       return
     }
 
-    const person = {
-      name: newName,
-      number: newNumber
-    }
+    person = {name: newName, number: newNumber}
 
-    setPeople(people.concat(person))
-    setNewName("")
-    setNewNumber("")
+    PeopleService.addPerson(person)
+      .then(newPerson => {
+        setPeople(people.concat(newPerson))
+        setNewName("")
+        setNewNumber("")
+    })
   }
 
   const handleNameInput = (event) => {
@@ -40,15 +55,24 @@ const App = () => {
     setFilter(event.target.value)
   }
 
+  const deleteAction = (person) => {
+    if (!window.confirm(`Do you want to delete ${person.name}`)) {
+      return
+    }
+
+    PeopleService
+      .deletePerson(person.id)
+      .then(() => setPeople(people.filter(p => p.id !== person.id)))
+  }
+
   useEffect(() => {
-    axios
-    .get("http://localhost:3001/people")
-    .then(response => {
-      setPeople(response.data)
-    })
+    PeopleService
+      .getPeople()
+      .then(newPeople => {
+        setPeople(newPeople)
+      })
   }, [])
   
-
   return (
     <div>
       <h1>Phonebook</h1>
@@ -65,7 +89,7 @@ const App = () => {
       />
 
       <h2>Numbers</h2>
-      <People people={people.filter(person => person.name.toUpperCase().includes(filter.toUpperCase()))}/>
+      <People people={people.filter(person => person.name.toUpperCase().includes(filter.toUpperCase()))} deleteAction={deleteAction}/>
     </div>
   )
 

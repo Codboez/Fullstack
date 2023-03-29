@@ -1,9 +1,9 @@
 import Person from "./Person"
 
-const People = ({people}) => {
+const People = ({people, deleteAction}) => {
     return (
         <div>
-            {people.map(person => <Person name={person.name} number={person.number} key={person.name} />)}
+            {people.map(person => <Person person={person} key={person.id} deleteAction={deleteAction} />)}
         </div>
     )
 }
