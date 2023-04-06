@@ -14,9 +14,8 @@ const deletePerson = (id) => (
     axios.delete(`${path}/${id}`).then(response => response.data)
 )
 
-const updateNumber = (person, newNumber) => {
-
-    return axios.put(`${path}/${person.id}`, {...person, number: newNumber}).then(response => response.data)
-}
+const updateNumber = (person, newNumber) => (
+    axios.put(`${path}/${person.id}`, {...person, number: newNumber}).then(response => response.data)
+)
 
 export default { getPeople, addPerson, deletePerson, updateNumber }
