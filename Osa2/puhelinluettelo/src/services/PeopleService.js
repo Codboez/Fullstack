@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const path = "http://localhost:3001/people"
+const path = "/api/people"
 
 const getPeople = () => (
     axios.get(path).then(response => response.data)
@@ -18,4 +18,6 @@ const updateNumber = (person, newNumber) => (
     axios.put(`${path}/${person.id}`, {...person, number: newNumber}).then(response => response.data)
 )
 
-export default { getPeople, addPerson, deletePerson, updateNumber }
+const peopleService = { getPeople, addPerson, deletePerson, updateNumber }
+
+export default peopleService

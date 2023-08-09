@@ -6,7 +6,7 @@ const Notification = ({type, text}) => {
     let style = {
         background: "#BBB",
         borderStyle: "solid",
-        width: "20%",
+        width: "40%",
         padding: "10px",
         paddingLeft: "20px",
         fontSize: "18px"

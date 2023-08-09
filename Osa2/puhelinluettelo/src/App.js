@@ -12,6 +12,11 @@ const App = () => {
   const [filter, setFilter] = useState('')
   const [message, setMessage] = useState({type: "", text: ""})
 
+  const createMessage = (message, type) => {
+    setMessage({text: message, type: type})
+    setTimeout(() => setMessage(""), 5000)
+  }
+
   const addNewPerson = (event) => {
     event.preventDefault()
 
@@ -27,11 +32,11 @@ const App = () => {
       PeopleService
         .updateNumber(person, newNumber)
         .then(newPerson => {
+          console.log(newPerson)
           setPeople(people.map(p => p.id === newPerson.id ? newPerson : p))
           setNewName("")
           setNewNumber("")
-          setMessage({text: "Number changed successfully", type: "confirmation"})
-          setTimeout(() => setMessage(""), 5000)
+          createMessage("Number changed successfully", "confirmation")
         })
 
       return
@@ -44,9 +49,9 @@ const App = () => {
         setPeople(people.concat(newPerson))
         setNewName("")
         setNewNumber("")
-        setMessage({text: "Person added successfully", type: "confirmation"})
-        setTimeout(() => setMessage(""), 5000)
-    })
+        createMessage("Person added successfully", "confirmation")
+      })
+      .catch(error => createMessage(error.response.data, "error"))
   }
 
   const handleNameInput = (event) => {
@@ -70,13 +75,11 @@ const App = () => {
       .deletePerson(person.id)
       .then(() => {
         setPeople(people.filter(p => p.id !== person.id))
-        setMessage({text: "Person deleted successfully", type: "confirmation"})
-        setTimeout(() => setMessage(""), 5000)
+        createMessage("Person deleted successfully", "confirmation")
       })
       .catch(() => {
         setPeople(people.filter(p => p.id !== person.id))
-        setMessage({text: "Person was already removed from database", type: "error"})
-        setTimeout(() => setMessage(""), 5000)
+        createMessage("Person was already removed from database", "error")
       })
 
   }
