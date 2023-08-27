@@ -1,0 +1,152 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+button {
+    border-radius: 17px;
+    border-style: solid;
+    border-color: #888;
+    border-width: 1px;
+    background-color: white;
+    color: black;
+}
+
+button:hover {
+    background-color: #bbb;
+}
+
+input {
+    border-radius: 17px;
+    border-style: solid;
+    border-color: #888;
+    border-width: 1px;
+    outline-color: #555;
+}
+
+.Login {
+    background-color: #ddd;
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 100px;
+    padding-top: 10px;
+    border-radius: 17px;
+    border-style: solid;
+    border-color: #888;
+}
+
+.Login p {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.Login input {
+    width: 60%;
+    padding: 10px;
+    margin-left: 18%;
+}
+
+.Login h2 {
+    text-align: center;
+    margin: 20px;
+}
+
+.Login button {
+    margin-left: 37.5%;
+    margin-top: 25px;
+    width: 25%;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+.topBar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    margin-top: 0px;
+    background-color: #222;
+    padding: 10px;
+    padding-left: 8%;
+    color: white;
+    z-index: 999;
+}
+
+.topBar h2 {
+    display: inline;
+}
+
+.topBar button {
+    position: fixed;
+    right: 0;
+    margin-right: 50px;
+    display: inline;
+    width: 85px;
+    padding: 9px;
+    margin-top: -6px;
+    font-size: 16px;
+}
+
+.Blogs {
+    margin-top: 80px;
+    margin-left: 20%;
+    background-color: #fff;
+    width: 60%;
+}
+
+.Blogs h1 {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.Blogs button {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+.Blog {
+    background-color: #f5f6f7;
+    color: black;
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 80%;
+    border-radius: 10px;
+    font-size: 18px;
+    position: relative;
+    left: 7.5%;
+}
+
+.Blog button {
+    float: right;
+    width: 50px;
+    padding: 5px;
+}
+
+.NewBlog {
+    margin-left: 8%;
+}
+
+.NewBlog input {
+    display: block;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+}
+
+#Blog-title {
+    display: inline;
+    font-size: 30px;
+}
+
+#Delete-button {
+    background-color: red;
+    display: block;
+    float: none;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    width: 60px;
+}
+
+#Delete-button:hover {
+    background-color: #b00;
+}
