@@ -1,0 +1,24 @@
+{
+  "notes": [
+    {
+      "content": "abc",
+      "id": 1
+    },
+    {
+      "content": "abcd",
+      "id": 2
+    }
+  ],
+  "persons": [
+    {
+      "name": "abc",
+      "number": "123",
+      "id": 1
+    },
+    {
+      "name": "abcd",
+      "number": "1234",
+      "id": 2
+    }
+  ]
+}

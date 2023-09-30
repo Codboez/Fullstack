@@ -1,0 +1,1 @@
+export const createId = () => (100000 * Math.random()).toFixed(0)
